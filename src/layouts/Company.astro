@@ -1,0 +1,34 @@
+---
+import BaseLayout from "./BaseLayout.astro"
+import Card from "@components/Card.astro"
+
+import type { MarkdownInstance } from "astro"
+import type { CompanyFrontmatter } from "src/types/CompanyFrontmatter"
+
+export interface Props {
+    company: CompanyFrontmatter
+    invoices: MarkdownInstance<Record<string, any>>[]
+}
+
+const { company, invoices } = Astro.props
+---
+<BaseLayout title={company.name}>
+    {company.name}
+    <ul role="list" class="link-card-grid">
+        {invoices.map((invoice) => (
+            <Card
+                href={invoice.url ? invoice.url : ''}
+                title={invoice.frontmatter.invoiceNumber}
+                body={invoice.frontmatter.issueDate}
+            />
+        ))}
+    </ul>
+</BaseLayout>
+<style>
+    .link-card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+		gap: 1rem;
+		padding: 0;
+	}
+</style>
