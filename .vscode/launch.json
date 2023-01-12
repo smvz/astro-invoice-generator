@@ -2,8 +2,20 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "command": "./node_modules/.bin/astro dev",
+      "command": "docker run -it --rm -v ${PWD}:/usr/src/app -p 127.0.0.1:3000:3000 node:latest /bin/sh -c \"cd /usr/src/app && npm run dev\"",
       "name": "Development server",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "docker run -it --rm -v ${PWD}:/usr/src/app node:latest /bin/sh -c \"cd /usr/src/app && npm run build\"",
+      "name": "Build",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "docker run -it --rm -v ${PWD}:/usr/src/app node:latest /bin/sh -c \"cd /usr/src/app && npm upgrade\"",
+      "name": "Upgrade dependencies",
       "request": "launch",
       "type": "node-terminal"
     }
