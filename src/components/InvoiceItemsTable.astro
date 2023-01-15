@@ -1,0 +1,62 @@
+---
+import type { InvoiceFrontmatterItem } from 'src/types/InvoiceFrontmatter'
+
+export interface Props {
+    currency: string
+    invoiceItems: InvoiceFrontmatterItem[]
+}
+
+const { currency, invoiceItems } = Astro.props
+
+var total = 0.00
+const calculatedItems = invoiceItems.map((item) => {
+    if (item.rate && item.quantity && !item.amount) {
+        item.amount = Number((item.rate * item.quantity).toFixed(2))
+        total += item.amount
+    } else if (item.amount) {
+        total += item.amount
+    }
+
+    return item
+})
+---
+<table class="invoiceItems">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Rate</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+    {calculatedItems.map((item) => (
+        <tr>
+            <td>{item.description}</td>
+            <td>{item.rate || '-'}</td>
+            <td>{item.quantity || '-'}</td>
+            <td>{item.amount && currency}{item.amount?.toFixed(2) || '-' }</td>
+        </tr>
+    ))}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">Grand total</td>
+            <td>{currency}{total.toFixed(2)}</td>
+        </tr>
+    </tfoot>
+</table>
+<style>
+    .invoiceItems td:not(:first-child) {
+        text-align: center;
+    }
+    .invoiceItems tfoot td:first-child {
+        text-align: right;
+    }
+    .invoiceItems tfoot {
+        font-weight: bold;
+    }
+    .invoiceItems tbody tr:nth-child(even) {
+        background: lightblue;
+    }
+</style>

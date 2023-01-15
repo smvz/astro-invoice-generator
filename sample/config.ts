@@ -1,16 +1,12 @@
-import type { CompanyFrontmatter } from "src/types/CompanyFrontmatter";
-
-export interface InvoiceConfig {
-    sender: CompanyFrontmatter
-    recipients: CompanyFrontmatter[]
-}
+import type { InvoiceConfig } from "src/types/InvoiceConfig"
 
 const invoiceConfig: InvoiceConfig = {
+    currency: '£',
     sender: {
         slug: "", // The slug is unused for the sender
         name: "Jane Doe",
-        address1: "1",
-        address2: "Street Road",
+        address1: "Company House",
+        address2: "1 Street Road",
         city: "London",
         postcode: "LN1234",
         phone: "020123"
@@ -19,8 +15,8 @@ const invoiceConfig: InvoiceConfig = {
         {
             slug: 'company', // The slug must match the directory name in src/pages/invoices/
             name: 'A Company',
-            address1: "2",
-            address2: "Street Road",
+            address1: "Company House",
+            address2: "2 Street Road",
             city: "London",
             postcode: "LN1234",
             phone: "020123"

@@ -1,4 +1,4 @@
-import type { CompanyFrontmatter } from "./CompanyFrontmatter";
+import type { CompanyFrontmatter } from "./CompanyFrontmatter"
 
 export interface InvoiceFrontmatterItem {
     description: string
@@ -13,6 +13,7 @@ export interface InvoiceFrontmatter {
     invoiceNumber: string
     issueDate: string
     dueDate?: string
+    currency?: string
     items: InvoiceFrontmatterItem[]
     total?: number // The sum of the item amounts if undefined
 }

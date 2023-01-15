@@ -1,0 +1,25 @@
+---
+import type { CompanyFrontmatter } from 'src/types/CompanyFrontmatter'
+
+export interface Props {
+	title: string;
+	company: CompanyFrontmatter;
+}
+
+const { title, company } = Astro.props;
+---
+<div class="company-details">
+	{title.length > 0 && <p><strong>{title}</strong></p>}
+	<p>{company.name}</p>
+	{company.address1 && <p>{company.address1}</p>}
+	{company.address2 && <p>{company.address2}</p>}
+	{company.address3 && <p>{company.address3}</p>}
+	{company.city && <p>{company.city}</p>}
+	{company.postcode && <p>{company.postcode}</p>}
+	{company.phone && <p>{company.phone}</p>}
+</div>
+<style>
+	.company-details p {
+		margin: 0;
+	}
+</style>

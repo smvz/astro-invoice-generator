@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro"
 import Card from "@components/Card.astro"
+import CompanyDetails from "@components/CompanyDetails.astro"
 
 import type { MarkdownInstance } from "astro"
 import type { CompanyFrontmatter } from "src/types/CompanyFrontmatter"
@@ -13,7 +14,7 @@ export interface Props {
 const { company, invoices } = Astro.props
 ---
 <BaseLayout title={company.name}>
-    {company.name}
+    <CompanyDetails title="" company={company} />
     <ul role="list" class="link-card-grid">
         {invoices.map((invoice) => (
             <Card
