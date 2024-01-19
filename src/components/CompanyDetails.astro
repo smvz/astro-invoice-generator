@@ -2,24 +2,20 @@
 import type { CompanyFrontmatter } from 'src/types/CompanyFrontmatter'
 
 export interface Props {
-	title: string;
-	company: CompanyFrontmatter;
+	title: string
+	company: CompanyFrontmatter
 }
 
-const { title, company } = Astro.props;
+const { title, company } = Astro.props
+
+let companyHtml = (title.length > 0 ? "<strong>" + title + ":</strong></br>" : "")
+companyHtml += company.name
+
+for (let line of [company.address1, company.address2, company.address3, company.city, company.county, company.postcode, company.country, company.phone]) {
+	if (line && line.length > 0)
+		companyHtml += "<br/>" + line
+}
 ---
 <div class="company-details">
-	{title.length > 0 && <p><strong>{title}</strong></p>}
-	<p>{company.name}</p>
-	{company.address1 && <p>{company.address1}</p>}
-	{company.address2 && <p>{company.address2}</p>}
-	{company.address3 && <p>{company.address3}</p>}
-	{company.city && <p>{company.city}</p>}
-	{company.postcode && <p>{company.postcode}</p>}
-	{company.phone && <p>{company.phone}</p>}
+	<p set:html={companyHtml} />
 </div>
-<style>
-	.company-details p {
-		margin: 0;
-	}
-</style>
