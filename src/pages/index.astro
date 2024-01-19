@@ -12,7 +12,7 @@ import config from '@config'
 		<ul role="list" class="link-card-grid">
 			{config.recipients.map((company) => (
 				<Card
-					href={"invoices/" + company.slug}
+					href={"invoices/" + company.slug + ".html"}
 					title={company.name}
 					body=""
 				/>
