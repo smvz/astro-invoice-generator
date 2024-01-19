@@ -15,6 +15,6 @@ export async function getStaticPaths() {
 const { company } = Astro.props
 
 const allInvoices = await Astro.glob('../**/*.md')
-const invoices = allInvoices.filter(invoice => invoice.file.includes(`src/pages/invoices/${company.slug}`))
+const invoices = allInvoices.filter(invoice => invoice.file.includes(`src/pages/invoices/${company.slug}/`))
 ---
 <Company company={company} invoices={invoices} />

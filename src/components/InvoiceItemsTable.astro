@@ -4,17 +4,18 @@ import type { InvoiceFrontmatterItem } from 'src/types/InvoiceFrontmatter'
 export interface Props {
     currency: string
     invoiceItems: InvoiceFrontmatterItem[]
+    total?: number
 }
 
-const { currency, invoiceItems } = Astro.props
+const { currency, invoiceItems, total } = Astro.props
 
-var total = 0.00
+var itemsTotal = 0.00
 const calculatedItems = invoiceItems.map((item) => {
-    if (item.rate && item.quantity && !item.amount) {
+    if (!item.amount && item.rate && item.quantity) {
         item.amount = Number((item.rate * item.quantity).toFixed(2))
-        total += item.amount
+        itemsTotal += item.amount
     } else if (item.amount) {
-        total += item.amount
+        itemsTotal += item.amount
     }
 
     return item
@@ -42,7 +43,7 @@ const calculatedItems = invoiceItems.map((item) => {
     <tfoot>
         <tr>
             <td colspan="3">Grand total</td>
-            <td>{currency}{total.toFixed(2)}</td>
+            <td>{currency}{(total || itemsTotal).toFixed(2)}</td>
         </tr>
     </tfoot>
 </table>

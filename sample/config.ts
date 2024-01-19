@@ -21,6 +21,15 @@ const invoiceConfig: InvoiceConfig = {
             postcode: "LN1234",
             phone: "020123"
         },
+        {
+            slug: 'company2',
+            name: 'Second Company',
+            address1: "Company House",
+            address2: "3 Street Road",
+            city: "London",
+            postcode: "LN1234",
+            phone: "020123"
+        },
     ]
 }
 

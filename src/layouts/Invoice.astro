@@ -20,7 +20,11 @@ const hasNotes = Astro.slots.has('default') && (await Astro.slots.render('defaul
         <CompanyDetails title="From" company={frontmatter.sender} />
         <CompanyDetails title="To" company={frontmatter.recipient} />
     </div>
-    <InvoiceItemsTable currency={frontmatter.currency || config.currency} invoiceItems={frontmatter.items} />
+    <InvoiceItemsTable
+        currency={frontmatter.currency || config.currency}
+        invoiceItems={frontmatter.items}
+        total={frontmatter.total}
+    />
     {hasNotes && <p>Additional notes:</p><slot/>}
 </BaseLayout>
 <style>
