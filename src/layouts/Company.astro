@@ -20,7 +20,7 @@ const { company, invoices } = Astro.props
             <Card
                 href={invoice.url ? invoice.url : ''}
                 title={invoice.frontmatter.invoiceNumber}
-                body={invoice.frontmatter.issueDate}
+                body={invoice.frontmatter.dateIssued}
             />
         ))}
     </ul>

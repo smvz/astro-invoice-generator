@@ -5,6 +5,8 @@ export interface CompanyFrontmatter {
     address2?: string
     address3?: string
     city?: string
+    county?: string
     postcode?: string
+    country?: string
     phone?: string
 }
