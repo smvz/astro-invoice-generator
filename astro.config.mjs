@@ -8,7 +8,6 @@ export default defineConfig({
         format: 'file'
     },
     markdown: {
-        remarkPlugins: [invoiceInjectionPlugin],
-        extendDefaultPlugins: true
+        remarkPlugins: [invoiceInjectionPlugin]
     }
 });

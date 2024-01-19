@@ -25,7 +25,7 @@ const hasNotes = Astro.slots.has('default') && (await Astro.slots.render('defaul
         invoiceItems={frontmatter.items}
         total={frontmatter.total}
     />
-    {hasNotes && <p>Additional notes:</p><slot/>}
+    { hasNotes && <p>Additional notes:</p><slot/> }
 </BaseLayout>
 <style>
     .company-details-container {
